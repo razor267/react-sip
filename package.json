@@ -1,0 +1,71 @@
+{
+    "name": "@greek/react-sip",
+    "version": "1.2.3x",
+    "description": "React wrapper for jssip",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "rimraf dist && tsc --project .",
+        "build:watch": "rimraf dist && tsc --project . --watch",
+        "format": "prettier --write --ignore-path .gitignore \"{.,src/**}/{*.js,*.ts,*.md,*.json}\"",
+        "lint": "tsc --project . --noEmit && tslint --project . && prettier-check --ignore-path .gitignore \"{.,src/**}/{*.js,*.ts,*.md,*.json}\"",
+        "prepublish": "npm run build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/.../react-sip"
+    },
+    "keywords": [
+        "react",
+        "sip",
+        "jssip",
+        "webrtc"
+    ],
+    "author": "Greek",
+    "contributors": [
+        {
+            "name": "Jonas Clément",
+            "url": "https://github.com/jonasclement"
+        },
+        {
+            "name": "Martin Juul Christiansen",
+            "email": "mjc@evercall.dk",
+            "url": "https://github.com/martin-juul"
+        },
+        {
+            "name": "Ulrich Dahl",
+            "email": "ulrich@tinx.dk",
+            "url": "https://github.com/ulrichtinx"
+        },
+        {
+            "name": "Baiborin Petr",
+            "email": "razor267@mail.ru",
+            "url": "https://github.com/razor267"
+        }
+    ],
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": ""
+    },
+    "homepage": "",
+    "dependencies": {
+        "jssip": "^3.10.0",
+        "prop-types": "^15.7.2"
+    },
+    "peerDependencies": {
+        "react": ">=15.0"
+    },
+    "devDependencies": {
+        "@types/prop-types": "^15.7.3",
+        "@types/react": "^16.9.49",
+        "@types/webrtc": "0.0.26",
+        "prettier": "^2.1.1",
+        "prettier-check": "^2.0.0",
+        "react": "^16.13.1",
+        "rimraf": "^3.0.2",
+        "tslint": "^6.1.3",
+        "tslint-config-prettier": "^1.15.0",
+        "typescript": "^3.9.7"
+    }
+}
