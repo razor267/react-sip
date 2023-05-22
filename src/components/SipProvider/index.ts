@@ -74,7 +74,7 @@ export interface JsSipState {
   callIsOnHold: boolean;
   callMicrophoneIsMuted: boolean;
   rtcSession: RTCSession | null;
-  uniqueId: string;
+  callId: string;
 }
 
 export default class SipProvider extends React.Component<JsSipConfig, JsSipState> {
@@ -157,7 +157,7 @@ export default class SipProvider extends React.Component<JsSipConfig, JsSipState
       dtmfSender: null,
       callIsOnHold: false,
       callMicrophoneIsMuted: false,
-      uniqueId: ''
+      callId: ''
     };
 
     this.ua = null;
@@ -172,7 +172,7 @@ export default class SipProvider extends React.Component<JsSipConfig, JsSipState
         errorMessage: this.state.sipErrorMessage,
       },
       call: {
-        id: 'UNKNOWN',
+        id: this.state.callId,
         status: this.state.callStatus,
         direction: this.state.callDirection,
         counterpart: this.state.callCounterpart,
@@ -186,7 +186,6 @@ export default class SipProvider extends React.Component<JsSipConfig, JsSipState
         unmuteMicrophone: this.callUnmuteMicrophone,
         toggleMuteMicrophone: this.callToggleMuteMicrophone,
         renegotiate: this.renegotiate,
-        uniqueId: this.state.uniqueId
       },
       registerSip: this.registerSip,
       unregisterSip: this.unregisterSip,
@@ -626,7 +625,7 @@ export default class SipProvider extends React.Component<JsSipConfig, JsSipState
           });
         } else if (originator === 'remote') {
           const foundUri = rtcRequest.from.toString();
-          const uniqueId = rtcRequest.getHeader('X-UniqueId').toString();
+          const callId = rtcRequest.getHeader('X-UniqueId').toString();
           const delimiterPosition = foundUri.indexOf(';') || null;
           this.setState({
             callDirection: CALL_DIRECTION_INCOMING,
@@ -634,7 +633,7 @@ export default class SipProvider extends React.Component<JsSipConfig, JsSipState
             callCounterpart: delimiterPosition ? foundUri.substring(0, delimiterPosition) || foundUri : foundUri,
             callIsOnHold: rtcSession.isOnHold().local,
             callMicrophoneIsMuted: rtcSession.isMuted().audio || false,
-            uniqueId,
+            callId,
           });
           this.logger.info(`REACT-SIP: Playing ringing sound`);
           this.audioPlayer.play('ringing', 0.4);
@@ -696,6 +695,7 @@ export default class SipProvider extends React.Component<JsSipConfig, JsSipState
             callIsOnHold: false,
             dtmfSender: null,
             callMicrophoneIsMuted: false,
+            callId: ''
           });
         });
 
