@@ -265,7 +265,7 @@ export default class SipProvider extends React.Component<JsSipConfig, JsSipState
     this.remoteAudio = null;
   }
 
-  registerSip(): void {
+  registerSip = (): void => {
     if (!this.ua) {
       throw new Error('Calling registerSip is not allowed when JsSIP.UA isn\'t initialized');
     }
@@ -280,7 +280,7 @@ export default class SipProvider extends React.Component<JsSipConfig, JsSipState
     this.ua.register();
   }
 
-  unregisterSip(options?: UnRegisterOptions): void {
+  unregisterSip = (options?: UnRegisterOptions): void => {
     if (!this.ua) {
       throw new Error('Calling unregisterSip is not allowed when JsSIP.UA isn\'t initialized');
     }
