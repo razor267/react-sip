@@ -15,7 +15,7 @@ React wrapper for [jssip](https://github.com/versatica/JsSIP).
 ## Installation
 
 ```bash
-npm install @evercall/react-sip
+npm install @razor267/react-sip
 ```
 
 There is no need to install `jssip` as it is a dependency of `react-sip`.
@@ -23,7 +23,7 @@ There is no need to install `jssip` as it is a dependency of `react-sip`.
 ## Usage
 
 ```js
-import { SipProvider } from '@evercall/react-sip';
+import { SipProvider } from '@razor267/react-sip';
 import App from './components/App';
 
 ReactDOM.render(
@@ -52,8 +52,8 @@ ReactDOM.render(
     dtmfTransportType={"RFC4733" | "INFO" | "RFC2733"} // DTMF tone transport method
   >
     <App />
-  </SipProvider>
-  document.getElementById('root'),
+  </SipProvider>,
+  document.getElementById('root')
 );
 ```
 
